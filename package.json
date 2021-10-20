@@ -1,0 +1,33 @@
+{
+  "scripts": {
+    "layer0:dev": "layer0 dev",
+    "layer0:build": "layer0 build",
+    "layer0:deploy": "layer0 deploy"
+  },
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "api",
+      "web",
+      "packages/*"
+    ]
+  },
+  "devDependencies": {
+    "@layer0/cli": "^3.16.11",
+    "@layer0/core": "^3.16.11",
+    "@layer0/devtools": "^3.16.11",
+    "@layer0/prefetch": "^3.16.11",
+    "@redwoodjs/core": "0.37.4"
+  },
+  "eslintConfig": {
+    "extends": "@redwoodjs/eslint-config",
+    "root": true
+  },
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.x"
+  },
+  "resolutions": {
+    "@webpack-cli/serve": "1.5.2"
+  }
+}
