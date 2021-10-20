@@ -1,5 +1,8 @@
 const { Router } = require('@layer0/core/router')
 
-module.exports = new Router()
-  // send any unmatched request to origin
-  .fallback(({ proxy }) => proxy('origin'))
+module.exports = new Router().match(
+  '/:path*',
+  ({serveStatic}) => {
+    serveStatic('web/dist/:path*')
+  }
+)

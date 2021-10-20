@@ -1,4 +1,5 @@
 {
+  "name": "redwood-layer0",
   "scripts": {
     "layer0:dev": "layer0 dev",
     "layer0:build": "layer0 build",
