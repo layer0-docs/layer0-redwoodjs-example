@@ -1,11 +1,6 @@
 # Example Redwood Application Deployed on Layer0
 
-## Getting Started
-- [Tutorial](https://redwoodjs.com/tutorial/welcome-to-redwood): getting started and complete overview guide.
-- [Docs](https://redwoodjs.com/docs/introduction): using the Redwood Router, handling assets and files, list of command-line tools, and more.
-- [Redwood Community](https://community.redwoodjs.com): get help, share tips and tricks, and collaborate on everything about RedwoodJS.
-
-### Setup
+## Setup
 
 We use Yarn as our package manager. To get the dependencies installed, just do this in the root directory:
 
@@ -13,13 +8,13 @@ We use Yarn as our package manager. To get the dependencies installed, just do t
 yarn
 ```
 
+## Develop
+
 ### Start Redwood development server
 
 ```terminal
 yarn rw dev
 ```
-
-Your browser should open automatically to `http://localhost:8910` to see the web app.
 
 ### Start development server with Layer0
 
@@ -27,11 +22,31 @@ Your browser should open automatically to `http://localhost:8910` to see the web
 yarn layer0 dev
 ```
 
+Your browser should open automatically to `http://localhost:8910` to see the web app.
+
 ![home-page-localhost-8910](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ijenahgpkabvms5qfbpo.png)
 
-## `layer0.config.js`
+## Deploy
 
-This project is configured to use a Layer0 [custom connector](https://docs.layer0.co/guides/connectors). The `layer0.config.js` configuration file specifies the location of the files defining the connector. In this case they are located in the `layer0` directory.
+### Build static assets with Layer0
+
+```terminal
+yarn layer0 build
+```
+
+### Deploy to Layer0
+
+```terminal
+yarn layer0 deploy
+```
+
+## Layer0 Configuration
+
+This project is configured to use a Layer0 [custom connector](https://docs.layer0.co/guides/connectors).
+
+### `layer0.config.js`
+
+The `layer0.config.js` configuration file specifies the location of the files defining the connector. In this case they are located in the `layer0` directory.
 
 ```js
 // layer0.config.js
