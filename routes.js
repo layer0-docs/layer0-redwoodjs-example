@@ -1,8 +1,4 @@
-const { Router } = require('@layer0/core/router')
+import { Router } from '@layer0/core'
+import { redwoodRoutes } from '@layer0/redwood'
 
-module.exports = new Router().match(
-  '/:path*',
-  ({serveStatic}) => {
-    serveStatic('web/dist/:path*')
-  }
-)
+export default new Router().use(redwoodRoutes)

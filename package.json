@@ -14,21 +14,22 @@
     ]
   },
   "devDependencies": {
-    "@layer0/cli": "^3.16.11",
-    "@layer0/core": "^3.16.11",
-    "@layer0/devtools": "^3.16.11",
-    "@layer0/prefetch": "^3.16.11",
-    "@redwoodjs/core": "0.37.4"
+    "@layer0/cli": "^4.3.2",
+    "@layer0/core": "^4.3.2",
+    "@layer0/devtools": "^4.3.2",
+    "@layer0/prefetch": "^4.3.2",
+    "@layer0/redwood": "^4.0.1-next-1635257510-d8e941fca.0",
+    "@redwoodjs/core": "0.38.3"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
     "root": true
   },
   "engines": {
-    "node": "14.x",
+    "node": ">=14.x <=16.x",
     "yarn": "1.x"
   },
-  "resolutions": {
-    "@webpack-cli/serve": "1.5.2"
+  "prisma": {
+    "seed": "yarn rw exec seed"
   }
 }

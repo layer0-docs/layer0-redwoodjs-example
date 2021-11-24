@@ -9,6 +9,7 @@ const HomePage = () => {
       />
 
       <h1>Redwood+Layer0 🚀</h1>
+      <p>Woot!</p>
     </>
   )
 }
