@@ -13,3 +13,4 @@ web/types/graphql.d.ts
 api/types/graphql.d.ts
 # Layer0 generated build directory
 .layer0
+.yalc
