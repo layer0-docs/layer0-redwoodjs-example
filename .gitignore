@@ -14,3 +14,8 @@ api/types/graphql.d.ts
 # Layer0 generated build directory
 .layer0
 .yalc
+
+
+# Deployment
+.serverless# Layer0 generated build directory
+.layer0

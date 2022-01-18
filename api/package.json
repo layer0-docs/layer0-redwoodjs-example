@@ -5,5 +5,9 @@
   "dependencies": {
     "@redwoodjs/api": "0.38.3",
     "@redwoodjs/graphql-server": "0.38.3"
+  },
+  "devDependencies": {
+    "@netlify/zip-it-and-ship-it": "^5.3.0",
+    "serverless-dotenv-plugin": "^3.10.0"
   }
 }
