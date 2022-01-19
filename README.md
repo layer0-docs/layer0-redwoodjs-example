@@ -62,7 +62,7 @@ export default HomePage
 `0 dev` starts the Layer0 dev server and the Redwood development server. Layer0 is on port 3000 and Redwood is started on 3001 by forwarding the port.
 
 ```terminal
-0 dev
+yarn 0 dev
 ```
 
 Open automatically to `http://localhost:8910` to see the web app.
@@ -74,13 +74,13 @@ Open automatically to `http://localhost:8910` to see the web app.
 `0 build` does a Redwood build of both the `web` and `api` sides as well as a Layer0 build for copying the necessary build assets.
 
 ```bash
-0 build
+yarn 0 build
 ```
 
 `0 run -p` runs the build simulating production mode.
 
 ```bash
-0 run -p
+yarn 0 run -p
 ```
 
 This starts Redwood's `apiServerHandler` on Layer0's production port and sets the `apiRootPath` to whatever is defined in `redwood.toml`. This means any API request that comes in starts up that server to handle the request.
@@ -90,7 +90,7 @@ This starts Redwood's `apiServerHandler` on Layer0's production port and sets th
 `0 deploy`
 
 ```bash
-0 deploy --site redwood-layer0
+yarn 0 deploy --site redwood-layer0
 ```
 
 ```
@@ -103,4 +103,24 @@ This starts Redwood's `apiServerHandler` on Layer0's production port and sets th
 *  https://anthony-campolo-redwood-layer0-default.layer0-limelight.link        *
 *                                                                              *
 ********************************************************************************
+```
+
+### Test endpoint
+
+```bash
+curl \
+  --request POST \
+  --header 'content-type: application/json' \
+  --url 'https://anthony-campolo-redwood-layer0-default.layer0-limelight.link/api/graphql' \
+  --data '{"query":"{ redwood { version } }"}'
+```
+
+```json
+{
+  "data":{
+    "redwood":{
+      "version":"0.41.0"
+    }
+  }
+}
 ```
