@@ -6,6 +6,14 @@ Layer0 by Limelight is an Edge Compute Platform with over 130 global points of p
 
 In addition to hosting your static assets, Layer0 also includes edge functions with [EdgeJS](https://www.layer0.co/edgejs), a framework agnostic, performant, and declarative JavaScript-based edge configuration language.
 
+## Demo
+
+https://layer0-docs-layer0-redwoodjs-example-default.layer0-limelight.link
+
+## Try It Now
+
+[![Deploy with Layer0](https://docs.layer0.co/button.svg)](https://app.layer0.co/deploy?repo=https://github.com/layer0-docs/layer0-redwoodjs-example)
+
 ## Layer0 Configuration
 
 This project is configured to use a Layer0 [connector](https://docs.layer0.co/guides/connectors) for RedwoodJS.
