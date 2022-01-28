@@ -1,5 +1,5 @@
 {
-  "name": "redwood-layer0",
+  "name": "layer0-redwoodjs-example",
   "scripts": {
     "layer0:dev": "layer0 dev",
     "layer0:build": "layer0 build",
@@ -14,12 +14,12 @@
     ]
   },
   "devDependencies": {
-    "@layer0/cli": "4.8.6-next-1642015569-9099db60f.0",
-    "@layer0/core": "4.8.6-next-1642015569-9099db60f.0",
-    "@layer0/devtools": "4.8.6-next-1642015569-9099db60f.0",
-    "@layer0/prefetch": "4.8.6-next-1642015569-9099db60f.0",
-    "@layer0/redwood": "4.8.6-next-1642544395-210aad3bc.0",
-    "@redwoodjs/core": "^0.41.0"
+    "@layer0/cli": "^4.10.0",
+    "@layer0/core": "^4.10.0",
+    "@layer0/devtools": "^4.10.0",
+    "@layer0/prefetch": "^4.10.0",
+    "@layer0/redwood": "^4.10.0",
+    "@redwoodjs/core": "^0.42.0"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
