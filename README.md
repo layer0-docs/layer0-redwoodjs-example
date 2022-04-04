@@ -127,7 +127,7 @@ curl \
 {
   "data":{
     "redwood":{
-      "version":"0.41.0"
+      "version":"1.0.0"
     }
   }
 }
