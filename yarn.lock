@@ -16430,6 +16430,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"layer0-redwoodjs-example@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "layer0-redwoodjs-example@workspace:."
+  dependencies:
+    "@layer0/cli": latest
+    "@layer0/core": latest
+    "@layer0/devtools": latest
+    "@layer0/prefetch": latest
+    "@layer0/redwood": latest
+    "@redwoodjs/core": 1.0.0
+  languageName: unknown
+  linkType: soft
+
 "lazy-get-decorator@npm:2.2.0":
   version: 2.2.0
   resolution: "lazy-get-decorator@npm:2.2.0"
@@ -21138,19 +21151,6 @@ __metadata:
   checksum: 20947bec5a5dd68b5c5c8423911e6e7c0ad834c451f1a929b1f4e2bc08836ad3f1a722ef2bfcbeca921870a0a283f13f064a317dc7a6768496e98c9a641ba290
   languageName: node
   linkType: hard
-
-"root-workspace-0b6124@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "root-workspace-0b6124@workspace:."
-  dependencies:
-    "@layer0/cli": latest
-    "@layer0/core": latest
-    "@layer0/devtools": latest
-    "@layer0/prefetch": latest
-    "@layer0/redwood": latest
-    "@redwoodjs/core": 1.0.0
-  languageName: unknown
-  linkType: soft
 
 "run-async@npm:^2.4.0":
   version: 2.4.1
