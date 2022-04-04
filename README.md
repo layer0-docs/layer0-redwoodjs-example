@@ -1,134 +1,121 @@
-# Deploy Redwood on Layer0 with Limelight
+# README
 
-Layer0 by Limelight is an Edge Compute Platform with over 130 global points of presence. Limelight operates its own private network with more than 70+ terabits per second of global egress capacity. Data is prefetched and streamed into the browser at a 95% cache hit rate by Layer0 before the user requests it.
+Welcome to [RedwoodJS](https://redwoodjs.com)!
 
-![Cache hit rate comparison graphic](https://assets-global.website-files.com/5ec129d839c03647b43dbd41/619459e884ec7ae74d923da8_I6iG8tVXinoz29x52oRnHeDYe8WmpuND7AdmwC9-c64qzxJVkN8fpn5Vlogr7W67K-peNtFsLvmBWDWuzlNJ1VnEXM3Iso4ijaf8tXlxd0Mmmk3LrBTLKXUCj_GJASq3WsIbksyJ.jpeg)
+> **Prerequisites**
+>
+> - Redwood requires [Node.js](https://nodejs.org/en/) (>=14.19.x <=16.x) and [Yarn](https://yarnpkg.com/) (>=1.15)
+> - Are you on Windows? For best results, follow our [Windows development setup](https://redwoodjs.com/docs/how-to/windows-development-setup) guide
 
-In addition to hosting your static assets, Layer0 also includes edge functions with [EdgeJS](https://www.layer0.co/edgejs), a framework agnostic, performant, and declarative JavaScript-based edge configuration language.
+Start by installing dependencies:
 
-## Demo
+```
+yarn install
+```
 
-https://layer0-docs-layer0-redwoodjs-example-default.layer0-limelight.link
+Then change into that directory and start the development server:
 
-## Try It Now
+```
+cd my-redwood-project
+yarn redwood dev
+```
 
-[![Deploy with Layer0](https://docs.layer0.co/button.svg)](https://app.layer0.co/deploy?repo=https://github.com/layer0-docs/layer0-redwoodjs-example)
+Your browser should automatically open to http://localhost:8910 where you'll see the Welcome Page, which links out to a ton of great resources.
 
-## Layer0 Configuration
+> **The Redwood CLI**
+>
+> Congratulations on running your first Redwood CLI command!
+> From dev to deploy, the CLI is with you the whole way.
+> And there's quite a few commands at your disposal:
+> ```
+> yarn redwood --help
+> ```
+> For all the details, see the [CLI reference](https://redwoodjs.com/docs/cli-commands).
 
-This project is configured to use a Layer0 [connector](https://docs.layer0.co/guides/connectors) for RedwoodJS.
+## Prisma and the database
 
-### `layer0.config.js`
+Redwood wouldn't be a full-stack framework without a database. It all starts with the schema. Open the [`schema.prisma`](api/db/schema.prisma) file in `api/db` and replace the `UserExample` model with the following `Post` model:
 
-The `layer0.config.js` configuration file specifies the configuration of the project such as defining the connector. In this case, it is using the connector `@layer0/redwood`.
-
-```js
-// layer0.config.js
-
-module.exports = {
-  connector: '@layer0/redwood',
+```
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  body      String
+  createdAt DateTime @default(now())
 }
 ```
 
-### `routes.js`
-
-```js
-// routes.js
-
-import { Router } from '@layer0/core'
-import { redwoodRoutes } from '@layer0/redwood'
-
-export default new Router().use(redwoodRoutes)
-```
-
-### `HomePage.js`
-
-```js
-// web/src/pages/HomePage/HomePage.js
-
-import { MetaTags } from '@redwoodjs/web'
-
-const HomePage = () => {
-  return (
-    <>
-      <MetaTags
-        title="Home"
-        description="An example Redwood application deployed on Layer0"
-      />
-
-      <h1>Redwood+Layer0 🚀</h1>
-      <p>Woot!</p>
-    </>
-  )
-}
-
-export default HomePage
-```
-
-### Start development server with Layer0
-
-`0 dev` starts the Layer0 dev server and the Redwood development server. Layer0 is on port 3000 and Redwood is started on 3001 by forwarding the port.
-
-```terminal
-yarn 0 dev
-```
-
-Open automatically to `http://localhost:8910` to see the web app.
-
-![home-page-localhost-8910](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ijenahgpkabvms5qfbpo.png)
-
-## Deploy
-
-`0 build` does a Redwood build of both the `web` and `api` sides as well as a Layer0 build for copying the necessary build assets.
-
-```bash
-yarn 0 build
-```
-
-`0 run -p` runs the build simulating production mode.
-
-```bash
-yarn 0 run -p
-```
-
-This starts Redwood's `apiServerHandler` on Layer0's production port and sets the `apiRootPath` to whatever is defined in `redwood.toml`. This means any API request that comes in starts up that server to handle the request.
-
-### Deploy to Layer0
-
-`0 deploy`
-
-```bash
-yarn 0 deploy
-```
+Redwood uses [Prisma](https://www.prisma.io/), a next-gen Node.js and TypeScript ORM, to talk to the database. Prisma's schema offers a declarative way of defining your app's data models. And Prisma [Migrate](https://www.prisma.io/migrate) uses that schema to make database migrations hassle-free:
 
 ```
-***** Deployment Complete ***********************************************************
-*                                                                                   *
-*  🖥  Layer0 Developer Console:                                                     *
-*  https://app.layer0.co/layer0-docs/layer0-redwoodjs-example/env/default/builds/2  *
-*                                                                                   *
-*  🌎 Website:                                                                      *
-*  https://layer0-docs-layer0-redwoodjs-example-default.layer0-limelight.link       *
-*                                                                                   *
-*************************************************************************************
+yarn rw prisma migrate dev
+
+# ...
+
+? Enter a name for the new migration: › create posts
 ```
 
-### Test endpoint
+> `rw` is short for `redwood`
 
-```bash
-curl \
-  --request POST \
-  --header 'content-type: application/json' \
-  --url 'https://layer0-docs-layer0-redwoodjs-example-default.layer0-limelight.link/api/graphql' \
-  --data '{"query":"{ redwood { version } }"}'
+You'll be prompted for the name of your migration. `create posts` will do.
+
+Now let's generate everything we need to perform all the CRUD (Create, Retrieve, Update, Delete) actions on our `Post` model:
+
+```
+yarn redwood g scaffold post
 ```
 
-```json
-{
-  "data":{
-    "redwood":{
-      "version":"0.41.0"
-    }
-  }
-}
+Navigate to http://localhost:8910/posts/new, fill in the title and body, and click "Save":
+
+Did we just create a post in the database? Yup! With `yarn rw g scaffold <model>`, Redwood created all the pages, components, and services necessary to perform all CRUD actions on our posts table.
+
+## Frontend first with Storybook
+
+Don't know what your data models look like?
+That's more than ok—Redwood integrates Storybook so that you can work on design without worrying about data.
+Mockup, build, and verify your React components, even in complete isolation from the backend:
+
 ```
+yarn rw storybook
+```
+
+Before you start, see if the CLI's `setup ui` command has your favorite styling library:
+
+```
+yarn rw setup ui --help
+```
+
+## Testing with Jest
+
+It'd be hard to scale from side project to startup without a few tests.
+Redwood fully integrates Jest with the front and the backends and makes it easy to keep your whole app covered by generating test files with all your components and services:
+
+```
+yarn rw test
+```
+
+To make the integration even more seamless, Redwood augments Jest with database [scenarios](https://redwoodjs.com/docs/testing.md#scenarios)  and [GraphQL mocking](https://redwoodjs.com/docs/testing.md#mocking-graphql-calls).
+
+## Ship it
+
+Redwood is designed for both serverless deploy targets like Netlify and Vercel and serverful deploy targets like Render and AWS:
+
+```
+yarn rw g setup deploy --help
+```
+
+Don't go live without auth!
+Lock down your front and backends with Redwood's built-in, database-backed authentication system ([dbAuth](https://redwoodjs.com/docs/authentication#self-hosted-auth-installation-and-setup)), or integrate with nearly a dozen third party auth providers:
+
+```
+yarn rw g setup auth --help
+```
+
+## Next Steps
+
+The best way to learn Redwood is by going through the comprehensive [tutorial](https://redwoodjs.com/docs/tutorial/foreword) and joining the community (via the [Discourse forum](https://community.redwoodjs.com) or the [Discord server](https://discord.gg/redwoodjs)).
+
+## Quick Links
+
+- Stay updated: read [Forum announcements](https://community.redwoodjs.com/c/announcements/5), follow us on [Twitter](https://twitter.com/redwoodjs), and subscribe to the [newsletter](https://redwoodjs.com/newsletter)
+- [Learn how to contribute](https://redwoodjs.com/docs/contributing)

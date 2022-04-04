@@ -1,5 +1,4 @@
 {
-  "name": "layer0-redwoodjs-example",
   "scripts": {
     "layer0:dev": "layer0 dev",
     "layer0:build": "layer0 build",
@@ -14,22 +13,23 @@
     ]
   },
   "devDependencies": {
-    "@layer0/cli": "^4.10.0",
-    "@layer0/core": "^4.10.0",
-    "@layer0/devtools": "^4.10.0",
-    "@layer0/prefetch": "^4.10.0",
-    "@layer0/redwood": "^4.10.0",
-    "@redwoodjs/core": "^0.42.0"
+    "@layer0/cli": "latest",
+    "@layer0/core": "latest",
+    "@layer0/devtools": "latest",
+    "@layer0/prefetch": "latest",
+    "@layer0/redwood": "latest",
+    "@redwoodjs/core": "1.0.0"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
     "root": true
   },
   "engines": {
-    "node": ">=14.x <=16.x",
-    "yarn": "1.x"
+    "node": ">=14.19 <=16.x",
+    "yarn": ">=1.15"
   },
   "prisma": {
     "seed": "yarn rw exec seed"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
